@@ -1,0 +1,4 @@
+name = "Paxultek"
+uuid = "b625ba5d-8e22-4a0c-9250-c8ca070d29e6"
+authors = ["Erik Edin <erikedin@users.noreply.github.com>"]
+version = "0.1.0"
