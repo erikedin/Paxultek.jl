@@ -20,6 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+module Paxultek
+
 using GLFW
 using Distributed
 
@@ -30,7 +32,7 @@ end
 
 function runvisualizer(context::VisualizerContext)
     # Create a window and its OpenGL context
-    window = GLFW.CreateWindow(640, 480, "GLFW.jl")
+    window = GLFW.CreateWindow(640, 480, "Paxultek")
 
     # Make the window's context current
     GLFW.MakeContextCurrent(window)
@@ -61,3 +63,5 @@ function start()
 
     context
 end
+
+end # module Paxultek
