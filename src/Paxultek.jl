@@ -30,6 +30,16 @@ struct VisualizerContext
     exitchannel::RemoteChannel
 end
 
+function stop(context::VisualizerContext)
+    # TODO For now there is only one event, an exit event,
+    # so it doesn't matter what value we send here.
+    put!(context.channel, 1)
+end
+
+function handleevent(::VisualizerContext, window, ev)
+    GLFW.SetWindowShouldClose(window, true)
+end
+
 function runvisualizer(context::VisualizerContext)
     # Create a window and its OpenGL context
     window = GLFW.CreateWindow(640, 480, "Paxultek")
@@ -39,6 +49,13 @@ function runvisualizer(context::VisualizerContext)
 
     # Loop until the user closes the window
     while !GLFW.WindowShouldClose(window)
+        # Handle events from the user
+        if isready(context.channel)
+            # TODO Handle only one event per frame for now, but it should handle all
+            ev = take!(context.channel)
+
+            handleevent(context, window, ev)
+        end
 
 	    # Render here
 
